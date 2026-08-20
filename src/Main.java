@@ -1,56 +1,58 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
 public class Main {
+
     public static void main(String[] args) {
 
-        Scanner input = new Scanner(System.in);
         Operations ops = new Operations();
+        Scanner input = new Scanner(System.in);
 
+        while (true) {
 
+            System.out.println("C -> Create User");
+            System.out.println("G -> Get User");
+            System.out.println("A -> Get All User");
+            System.out.println("D -> Delete User");
+            System.out.println("U -> Update User");
+            System.out.println("E -> Exit");
+            System.out.println("Enter Choice.....");
 
-        while(true) {
+            char ch = Character.toLowerCase(input.next().charAt(0));
+            input.nextLine();
 
-            System.out.println("C -> Create User ");
-            System.out.println("G -> Get User ");
-            System.out.println("A -> Get All User ");
-            System.out.println("D -> Delete User ");
-            System.out.println("U -> Update User ");
-            System.out.println("E -> Exit ");
-            System.out.println("Enter Choice..... ");
+            try {
+                switch (ch) {
 
-            char ch = input.next().charAt(0);
+                    case 'c':
+                        ops.createUser();
+                        break;
 
-            switch (ch) {
-                case 'C':
-                    ops.createUser();
-                    break;
+                    case 'g':
+                        ops.getUser();
+                        break;
 
-                case 'G':
-                    ops.getUser();
-                    break;
+                    case 'a':
+                        ops.getAllUser();
+                        break;
 
-                case 'A':
-                    ops.getAllUser();
-                    break;
+                    case 'd':
+                        ops.deleteUser();
+                        break;
 
-                case 'D':
-                    ops.deleteUser();
-                    break;
+                    case 'u':
+                        ops.updateUser();
+                        break;
 
-                case 'U':
-                    ops.updateUser();
-                    break;
+                    case 'e':
+                        return;
 
-                case 'E':
-                    return;
+                    default:
+                        System.out.println("Invalid choice");
+                }
 
-                default:
-                    break;
-
+            } catch (UserNotFoundException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
